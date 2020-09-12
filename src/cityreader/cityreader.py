@@ -84,5 +84,32 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
+  latasc = list(map(float,(lat1,lat2)))
+
+  lonasc = list(map(float,(lon1,lon2)))
+
+  latasc.sort()
+  lonasc.sort()
+
+  print(latasc,lonasc)
+
+  for city in cities:
+    if latasc[0] <= city.lat <= latasc[1] and lonasc[0] <= city.lon <= lonasc[1]:
+      within.append(city)
 
   return within
+
+try:
+  lat1,lon1 = input("Input the first point to search. ex. 54,-100: ").split(",")
+  lat2,lon2 = input("Input the second point to search. ex. 32, -120: ").split(",")
+
+  # lat1 = float(lat1)
+  # lon1 = float(lon1)
+  # lat2 = float(lat2)
+  # lon2 = float(lon2)
+
+  cityreader_stretch(lat1,lon1,lat2,lon2,cities)
+  
+except ValueError:
+  print("Enter Numbers seperated by commas.")
+  pass
